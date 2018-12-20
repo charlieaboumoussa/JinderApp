@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="62fe91dd06c64a22bba6caba02d1ac94" Name="Diagram1">
+        <EntityTypeShape EntityType="JinderDBModel.ChatMessage" Width="1.5" PointX="7.125" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinderDBModel.ExpressionLog" Width="1.5" PointX="1" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinderDBModel.JinderUser" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinderDBModel.JobPost" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinderDBModel.Notification" Width="1.5" PointX="1" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JinderDBModel.SeekerProfile" Width="1.5" PointX="5.625" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="JinderDBModel.FK_ChatMessage_JinderUser" ManuallyRouted="false" />
+        <AssociationConnector Association="JinderDBModel.FK_ChatMessage_JinderUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="JinderDBModel.FK_ExpressionLog_JinderUser" ManuallyRouted="false" />
+        <AssociationConnector Association="JinderDBModel.FK_ExpressionLog_JinderUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="JinderDBModel.FK_JobPost_JinderUser" ManuallyRouted="false" />
+        <AssociationConnector Association="JinderDBModel.FK_Notification_JinderUser" ManuallyRouted="false" />
+        <AssociationConnector Association="JinderDBModel.FK_SeekerProfile_JinderUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

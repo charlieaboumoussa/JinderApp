@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JinderDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChatMessage">
+    <Key>
+      <PropertyRef Name="ChatMessageId" />
+    </Key>
+    <Property Name="ChatMessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SenderId" Type="Int32" />
+    <Property Name="ReceiverId" Type="Int32" />
+    <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MessageDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="JinderUser" Relationship="Self.FK_ChatMessage_JinderUser" FromRole="ChatMessage" ToRole="JinderUser" />
+    <NavigationProperty Name="JinderUser1" Relationship="Self.FK_ChatMessage_JinderUser1" FromRole="ChatMessage" ToRole="JinderUser" />
+  </EntityType>
+  <EntityType Name="ExpressionLog">
+    <Key>
+      <PropertyRef Name="ExpressionLogId" />
+    </Key>
+    <Property Name="ExpressionLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SourceUserId" Type="Int32" />
+    <Property Name="TargetUserId" Type="Int32" />
+    <Property Name="IsInterested" Type="Boolean" />
+    <Property Name="ExpressionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="JinderUser" Relationship="Self.FK_ExpressionLog_JinderUser" FromRole="ExpressionLog" ToRole="JinderUser" />
+    <NavigationProperty Name="JinderUser1" Relationship="Self.FK_ExpressionLog_JinderUser1" FromRole="ExpressionLog" ToRole="JinderUser" />
+  </EntityType>
+  <EntityType Name="JinderUser">
+    <Key>
+      <PropertyRef Name="JinderUserId" />
+    </Key>
+    <Property Name="JinderUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="ProfilePicture" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChatMessages" Relationship="Self.FK_ChatMessage_JinderUser" FromRole="JinderUser" ToRole="ChatMessage" />
+    <NavigationProperty Name="ChatMessages1" Relationship="Self.FK_ChatMessage_JinderUser1" FromRole="JinderUser" ToRole="ChatMessage" />
+    <NavigationProperty Name="ExpressionLogs" Relationship="Self.FK_ExpressionLog_JinderUser" FromRole="JinderUser" ToRole="ExpressionLog" />
+    <NavigationProperty Name="ExpressionLogs1" Relationship="Self.FK_ExpressionLog_JinderUser1" FromRole="JinderUser" ToRole="ExpressionLog" />
+    <NavigationProperty Name="JobPosts" Relationship="Self.FK_JobPost_JinderUser" FromRole="JinderUser" ToRole="JobPost" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_JinderUser" FromRole="JinderUser" ToRole="Notification" />
+    <NavigationProperty Name="SeekerProfiles" Relationship="Self.FK_SeekerProfile_JinderUser" FromRole="JinderUser" ToRole="SeekerProfile" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="JobPost">
+    <Key>
+      <PropertyRef Name="JobPostId" />
+    </Key>
+    <Property Name="JobPostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PosterId" Type="Int32" />
+    <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RequiredSkills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SalaryRange" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OperationHours" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="JinderUser" Relationship="Self.FK_JobPost_JinderUser" FromRole="JobPost" ToRole="JinderUser" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="NotificationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NotificationDate" Type="DateTime" Precision="3" />
+    <Property Name="TargetId" Type="Int32" />
+    <NavigationProperty Name="JinderUser" Relationship="Self.FK_Notification_JinderUser" FromRole="Notification" ToRole="JinderUser" />
+  </EntityType>
+  <EntityType Name="SeekerProfile">
+    <Key>
+      <PropertyRef Name="SeekerProfileId" />
+    </Key>
+    <Property Name="SeekerProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JinderUserId" Type="Int32" />
+    <Property Name="Education" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Experience" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Certification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="JinderUser" Relationship="Self.FK_SeekerProfile_JinderUser" FromRole="SeekerProfile" ToRole="JinderUser" />
+  </EntityType>
+  <Association Name="FK_ChatMessage_JinderUser">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="SenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatMessage_JinderUser1">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="ChatMessage" Type="Self.ChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="ChatMessage">
+        <PropertyRef Name="ReceiverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpressionLog_JinderUser">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="ExpressionLog" Type="Self.ExpressionLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="ExpressionLog">
+        <PropertyRef Name="SourceUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpressionLog_JinderUser1">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="ExpressionLog" Type="Self.ExpressionLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="ExpressionLog">
+        <PropertyRef Name="TargetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobPost_JinderUser">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="JobPost" Type="Self.JobPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="JobPost">
+        <PropertyRef Name="PosterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_JinderUser">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeekerProfile_JinderUser">
+    <End Role="JinderUser" Type="Self.JinderUser" Multiplicity="0..1" />
+    <End Role="SeekerProfile" Type="Self.SeekerProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JinderUser">
+        <PropertyRef Name="JinderUserId" />
+      </Principal>
+      <Dependent Role="SeekerProfile">
+        <PropertyRef Name="JinderUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JinderDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChatMessages" EntityType="Self.ChatMessage" />
+    <EntitySet Name="ExpressionLogs" EntityType="Self.ExpressionLog" />
+    <EntitySet Name="JinderUsers" EntityType="Self.JinderUser" />
+    <EntitySet Name="JobPosts" EntityType="Self.JobPost" />
+    <EntitySet Name="Notifications" EntityType="Self.Notification" />
+    <EntitySet Name="SeekerProfiles" EntityType="Self.SeekerProfile" />
+    <AssociationSet Name="FK_ChatMessage_JinderUser" Association="Self.FK_ChatMessage_JinderUser">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="ChatMessage" EntitySet="ChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatMessage_JinderUser1" Association="Self.FK_ChatMessage_JinderUser1">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="ChatMessage" EntitySet="ChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpressionLog_JinderUser" Association="Self.FK_ExpressionLog_JinderUser">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="ExpressionLog" EntitySet="ExpressionLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpressionLog_JinderUser1" Association="Self.FK_ExpressionLog_JinderUser1">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="ExpressionLog" EntitySet="ExpressionLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobPost_JinderUser" Association="Self.FK_JobPost_JinderUser">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="JobPost" EntitySet="JobPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_JinderUser" Association="Self.FK_Notification_JinderUser">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeekerProfile_JinderUser" Association="Self.FK_SeekerProfile_JinderUser">
+      <End Role="JinderUser" EntitySet="JinderUsers" />
+      <End Role="SeekerProfile" EntitySet="SeekerProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
